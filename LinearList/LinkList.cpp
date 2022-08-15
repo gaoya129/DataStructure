@@ -26,19 +26,23 @@ typedef struct LNode{
 LinkList HeadInsert(LinkList &L){
     LNode * t;ElemType x;
     L = (LinkList)malloc(sizeof(LNode));
-    if(L != NULL)cout<<"Head Insert:create head node suceed."<<endl;
+    if(L == NULL)return NULL;
+    else cout<<"Head Insert:create head node suceed."<<endl;
     L->next = NULL;
     cout<<"please enter the data:(-1 to terminated)"<<endl;
     cin>>x;
     while(x != -1){
         t = (LNode *)malloc(sizeof(LNode));
-        if(t != NULL) cout<<"create node for data "<<x<<endl;
+        if(t == NULL) return NULL;
+        else cout<<"create node for data "<<x<<endl;
         t->data = x;
         t->next = L->next;
         L->next = t;
         cin>>x;
     }cout<<"Head Insert complete\n";
+    return L;
 }
+
 
 //尾插法
 LinkList TailInsert(LinkList &L){
@@ -58,7 +62,9 @@ LinkList TailInsert(LinkList &L){
         p = t;
         cin>>x;
     }cout<<"Tail Insert complete\n";
+    return L;
 }
+
 
 //2.返回表长
 int Length(LinkList L){
@@ -83,7 +89,7 @@ LNode * LocateElem(LinkList L,ElemType e){
 //4.按位查找 返回该结点
 LNode * GetElem(LinkList L,int i){
     int j = 0;LNode *p = L;
-    if(i < 0)return NULL;
+    if(i < 0 || i > Length(L))return NULL;
     while(j < i && p != NULL){
         j++;p = p->next;
     }
@@ -93,19 +99,24 @@ LNode * GetElem(LinkList L,int i){
 //5.在位置i插入元素e
 void ListInsert(LinkList &L,int i,ElemType e){
     LNode *p = GetElem(L,i-1);
-    LNode *s=(LNode *)malloc(sizeof(LNode));
-    s->data = e;
-    s->next = p->next;
-    p->next = s;
+    if(p != NULL){
+        LNode *s= (LNode *)malloc(sizeof(LNode));
+        s->data = e;
+        s->next = p->next;
+        p->next = s;
+    }else cout<<"Invalid index\n";
+    
 }
 
 //6.删除链表下标为i的元素并用e返回
 void ListDelete(LinkList &L,int i,ElemType &e){
     LNode *p = GetElem(L,i-1);
-    LNode *s = p->next;
-    p->next = s->next;
-    e = s->data;
-    free(s);
+    if(p != NULL){
+        LNode *s = p->next;
+        p->next = s->next;
+        e = s->data;
+        free(s);
+    }else cout<<"Invalid index\n";
 }
 
 //7.打印顺序表元素
