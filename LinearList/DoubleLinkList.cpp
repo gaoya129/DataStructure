@@ -108,7 +108,7 @@ void ListDelete(DList &L,int i,ElemType &e){
     if(p != NULL){
         DNode *t = p->next;
         p->next = t->next;
-        t->next->prior = p;
+        if(t->next != NULL)t->next->prior = p;
         e = t->data;
         free(t);
     }else cout<<"Invalid index\n";

@@ -46,7 +46,7 @@ int LocateElem(SLinkList L,ElemType e){
     }return i;
 }
 
-//4.按位查找 返回该结点
+//4.按位查找 返回该结点的数组下标
 int GetElem(SLinkList L,int i){
     int index = 0;
     if(i >= MAX_LENGTH || i < 0) return -1;
