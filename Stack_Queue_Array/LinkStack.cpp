@@ -24,7 +24,7 @@ typedef struct LinkNode{
 
 //1.初始化栈 设置栈顶指针
 void InitStack(LStack &S){
-    S = NULL;
+    S = NULL;//判空条件
 }
 
 //2.销毁栈

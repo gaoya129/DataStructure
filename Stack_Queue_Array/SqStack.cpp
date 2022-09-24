@@ -22,7 +22,7 @@ typedef struct SqStack{
 
 //1.初始化栈 设置栈顶指针
 void InitStack(SqStack &S){
-    S.top = -1;
+    S.top = -1;//判空条件
 }
 
 //2.销毁栈 顺序栈用不到这个操作其实
